@@ -1,12 +1,10 @@
 import React, { PropTypes } from 'react';
-import { Col, Thumbnail } from 'react-bootstrap';
 
 const Picture = props => (
-  <Col xs={6} md={4}>
-    <Thumbnail src={props.url} alt={props.title}>
-      <p>{props.description}</p>
-    </Thumbnail>
-  </Col>
+  <div className="card">
+    <img className="card-img-top" width="100%" src={props.url} alt={props.title} />
+    <h4 className="card-title">{props.description}</h4>
+  </div>
 );
 
 Picture.propTypes = {

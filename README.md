@@ -2,6 +2,8 @@
 
 Display a gallery from imgur.
 
+![screenshot](screenshot.png)
+
 # Features
 
   - show gallery images in a grid of thumbnails;

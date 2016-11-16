@@ -1,12 +1,11 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Grid, Row } from 'react-bootstrap';
 import Picture from './Picture';
 
 const Gallery = props => (
-  <Grid>
+  <div>
     <h1>{props.title}</h1>
-    <Row>
+    <div className="card-columns">
       {props.pictures.map((picture, i) =>
         <Picture
           title={picture.title}
@@ -15,8 +14,8 @@ const Gallery = props => (
           key={i}
         />
       )}
-    </Row>
-  </Grid>
+    </div>
+  </div>
 );
 
 const mapStateToProps = state => ({

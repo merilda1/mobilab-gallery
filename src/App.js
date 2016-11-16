@@ -20,9 +20,11 @@ const App = () => (
           <NavItem eventKey={2} href="#user">User</NavItem>
         </Nav>
       </Navbar>
-      <Gallery
-        title="Gallery"
-      />
+      <div className="container">
+        <Gallery
+          title="Gallery"
+        />
+      </div>
     </div>
   </Provider>
 );
