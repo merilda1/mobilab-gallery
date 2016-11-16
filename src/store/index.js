@@ -1,10 +1,16 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import thunkMiddleware from 'redux-thunk';
 import Gallery from './reducers/Gallery';
+import Actions from './Actions';
 
 const combinedReducers = combineReducers({
   gallery: Gallery,
 });
 
-const store = createStore(combinedReducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(combinedReducers, composeEnhancers(applyMiddleware(thunkMiddleware)));
+
+store.dispatch(Actions.fetchGallery('HOT', 0, null));
 
 export default store;

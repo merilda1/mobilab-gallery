@@ -1,7 +1,5 @@
 import { createReducer } from 'reduxsauce';
-import Types from './../Types';
-// CLient ID: 1ef0a5c1563efb4
-// Client secret: c9ae6255a54fa02e688a7f4e50e1e51ed012654a
+import { Types } from './../Actions';
 
 const INITIAL_STATE = {
   title: 'Image Gallery',
@@ -10,7 +8,7 @@ const INITIAL_STATE = {
   user: null,
 };
 
-export const picturesLoaded = (state = INITIAL_STATE, action) => {
+export const receiveGallery = (state = INITIAL_STATE, action) => {
   let title;
   switch (action.galleryType) {
     case 'HOT':
@@ -30,7 +28,7 @@ export const picturesLoaded = (state = INITIAL_STATE, action) => {
 };
 
 export const HANDLERS = {
-  [Types.PICTURES_LOADED]: picturesLoaded,
+  [Types.RECEIVE_GALLERY]: receiveGallery,
 };
 
 export default createReducer(INITIAL_STATE, HANDLERS);
