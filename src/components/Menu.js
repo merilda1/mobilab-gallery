@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 
 const Menu = props => (
   <div>
@@ -8,9 +9,9 @@ const Menu = props => (
           <a href="#home" className="navbar-brand">Mobilab Gallery</a>
         </div>
         <ul className="nav navbar-nav">
-          <li role="presentation" className=""><a href="#hot">Hot</a></li>
-          <li role="presentation" className=""><a href="#top">Top</a></li>
-          <li role="presentation" className=""><a href="#user">User</a></li>
+          <li role="presentation" className={props.galleryType === 'HOT' ? 'active' : null}><a href="#hot">Hot</a></li>
+          <li role="presentation" className={props.galleryType === 'TOP' ? 'active' : null}><a href="#top">Top</a></li>
+          <li role="presentation" className={props.galleryType === 'USER' ? 'active' : null}><a href="#user">User</a></li>
         </ul>
       </div>
     </nav>
@@ -18,6 +19,11 @@ const Menu = props => (
 );
 
 Menu.propTypes = {
+  galleryType: PropTypes.oneOf('HOT', 'TOP', 'USER'),
 };
 
-export default Menu;
+const mapStateToProps = state => ({
+  galleryType: state.gallery.type,
+});
+
+export default connect(mapStateToProps)(Menu);
