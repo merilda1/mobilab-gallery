@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import Actions from './../store/Actions';
 
 const Menu = props => (
   <div>
@@ -9,9 +10,9 @@ const Menu = props => (
           <a href="#home" className="navbar-brand">Mobilab Gallery</a>
         </div>
         <ul className="nav navbar-nav">
-          <li role="presentation" className={props.galleryType === 'HOT' ? 'active' : null}><a href="#hot">Hot</a></li>
-          <li role="presentation" className={props.galleryType === 'TOP' ? 'active' : null}><a href="#top">Top</a></li>
-          <li role="presentation" className={props.galleryType === 'USER' ? 'active' : null}><a href="#user">User</a></li>
+          <li role="presentation" className={props.galleryType === 'HOT' ? 'active' : null}><a href="#hot" onClick={() => props.changeGalleryType('HOT')}>Hot</a></li>
+          <li role="presentation" className={props.galleryType === 'TOP' ? 'active' : null}><a href="#top" onClick={() => props.changeGalleryType('TOP')}>Top</a></li>
+          <li role="presentation" className={props.galleryType === 'USER' ? 'active' : null}><a href="#user" onClick={() => props.changeGalleryType('USER')}>User</a></li>
         </ul>
       </div>
     </nav>
@@ -20,10 +21,15 @@ const Menu = props => (
 
 Menu.propTypes = {
   galleryType: PropTypes.oneOf('HOT', 'TOP', 'USER'),
+  changeGalleryType: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
   galleryType: state.gallery.type,
 });
 
-export default connect(mapStateToProps)(Menu);
+const mapDispatchToProps = dispatch => ({
+  changeGalleryType: type => dispatch(Actions.changeGalleryType(type)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Menu);
