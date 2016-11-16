@@ -6,6 +6,7 @@ const INITIAL_STATE = {
   pictures: [],
   page: 0,
   user: null,
+  type: 'HOT',
 };
 
 export const receiveGallery = (state = INITIAL_STATE, action) => {
@@ -27,8 +28,12 @@ export const receiveGallery = (state = INITIAL_STATE, action) => {
   return { ...state, pictures: action.pictures, title };
 };
 
+export const changeGalleryType = (state = INITIAL_STATE, action) =>
+  ({ ...state, type: action.galleryType });
+
 export const HANDLERS = {
   [Types.RECEIVE_GALLERY]: receiveGallery,
+  [Types.CHANGE_GALLERY_TYPE]: changeGalleryType,
 };
 
 export default createReducer(INITIAL_STATE, HANDLERS);

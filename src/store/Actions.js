@@ -3,6 +3,7 @@ import fetch from 'isomorphic-fetch';
 
 export const { Types, Creators } = createActions({
   receiveGallery: ['galleryType', 'pictures', 'page', 'user'],
+  changeGalleryType: ['galleryType'],
   requestGallery: ['galleryType', 'page', 'user'],
   fetchGallery: (galleryType, page, user) => (dispatch) => {
     return fetch('https://api.imgur.com/3/gallery/hot', {
