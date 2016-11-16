@@ -20,7 +20,7 @@ const Menu = props => (
 );
 
 Menu.propTypes = {
-  galleryType: PropTypes.oneOf('HOT', 'TOP', 'USER'),
+  galleryType: PropTypes.oneOf(['HOT', 'TOP', 'USER']),
   changeGalleryType: PropTypes.func,
 };
 
@@ -29,7 +29,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  changeGalleryType: type => dispatch(Actions.changeGalleryType(type)),
+  changeGalleryType: (type) => {
+    dispatch(Actions.changeGalleryType(type));
+    dispatch(Actions.fetchGallery(type, 0, null));
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Menu);
