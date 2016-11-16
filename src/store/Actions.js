@@ -6,7 +6,8 @@ export const { Types, Creators } = createActions({
   changeGalleryType: ['galleryType'],
   requestGallery: ['galleryType', 'page', 'user'],
   fetchGallery: (galleryType, page, user) => (dispatch) => {
-    return fetch('https://api.imgur.com/3/gallery/hot', {
+    const type = galleryType.toLowerCase();
+    return fetch(`https://api.imgur.com/3/gallery/${type}`, {
       headers: {
         Authorization: 'Client-ID 1ef0a5c1563efb4',
       },
