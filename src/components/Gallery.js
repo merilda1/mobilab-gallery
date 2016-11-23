@@ -23,7 +23,7 @@ const Gallery = props => (
           description={picture.title}
           thumbnail
           key={i}
-        />
+        />,
       )}
     </div>
   </div>
@@ -35,7 +35,7 @@ const mapStateToProps = state => ({
   viral: state.gallery.viral,
 });
 
-const mapDispatchToProps = (dispatch, props) => ({
+const mapDispatchToProps = dispatch => ({
   setViralDisplay: (viral) => {
     dispatch(Actions.setViralDisplay(viral));
   },
