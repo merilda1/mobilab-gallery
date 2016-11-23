@@ -11,6 +11,6 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(combinedReducers, composeEnhancers(applyMiddleware(thunkMiddleware)));
 
-store.dispatch(Actions.fetchGallery('HOT', 0, null));
+store.dispatch(Actions.fetchGallery('HOT', 0, true));
 
 export default store;

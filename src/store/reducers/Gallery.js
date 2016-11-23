@@ -5,7 +5,6 @@ const INITIAL_STATE = {
   title: 'Image Gallery',
   pictures: [],
   page: 0,
-  user: null,
   type: 'HOT',
   viral: true,
 };
