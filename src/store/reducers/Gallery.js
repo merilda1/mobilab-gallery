@@ -7,6 +7,7 @@ const INITIAL_STATE = {
   page: 0,
   user: null,
   type: 'HOT',
+  viral: true,
 };
 
 export const receiveGallery = (state = INITIAL_STATE, action) => {
@@ -31,9 +32,13 @@ export const receiveGallery = (state = INITIAL_STATE, action) => {
 export const changeGalleryType = (state = INITIAL_STATE, action) =>
   ({ ...state, type: action.galleryType });
 
+export const setViralDisplay = (state = INITIAL_STATE, action) =>
+  ({ ...state, viral: action.viral });
+
 export const HANDLERS = {
   [Types.RECEIVE_GALLERY]: receiveGallery,
   [Types.CHANGE_GALLERY_TYPE]: changeGalleryType,
+  [Types.SET_VIRAL_DISPLAY]: setViralDisplay,
 };
 
 export default createReducer(INITIAL_STATE, HANDLERS);

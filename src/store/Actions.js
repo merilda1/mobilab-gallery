@@ -5,6 +5,7 @@ export const { Types, Creators } = createActions({
   receiveGallery: ['galleryType', 'pictures', 'page', 'user'],
   changeGalleryType: ['galleryType'],
   requestGallery: ['galleryType', 'page', 'user'],
+  setViralDisplay: ['viral'],
   fetchGallery: (galleryType, page, user) => (dispatch) => {
     const type = galleryType.toLowerCase();
     return fetch(`https://api.imgur.com/3/gallery/${type}`, {
