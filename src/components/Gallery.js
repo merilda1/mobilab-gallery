@@ -5,12 +5,17 @@ import Picture from './Picture';
 const Gallery = props => (
   <div>
     <h1>{props.title}</h1>
+    <div>
+      <input type="checkbox" id="viral-video" />
+      <label htmlFor="viral-video">&nbsp;Display Viral Video</label>
+    </div>
     <div className="card-columns">
       {props.pictures.map((picture, i) =>
         <Picture
           title={picture.title}
-          url={picture.is_album ? `http://i.imgur.com/${picture.cover}.png` : picture.link}
+          picture={picture}
           description={picture.title}
+          thumbnail
           key={i}
         />
       )}
@@ -26,8 +31,10 @@ const mapStateToProps = state => ({
 Gallery.propTypes = {
   title: PropTypes.string,
   pictures: PropTypes.arrayOf(React.PropTypes.shape({
-    title: React.PropTypes.string,
-    link: React.PropTypes.string,
+    title: PropTypes.string,
+    link: PropTypes.string,
+    is_album: PropTypes.bool,
+    cover: PropTypes.string,
   })),
 };
 
