@@ -11,7 +11,9 @@ const Gallery = props => (
         <fieldset>
           <legend>Options</legend>
           <div className="form-group">
-            <label htmlFor="viral-video" className="col-lg-2 control-label">Display Viral Video</label>
+            <label htmlFor="viral-video" className="col-lg-2 control-label">
+              Display Viral Video
+            </label>
             <div className="col-lg-10">
               <div className="checkbox">
                 <input
@@ -31,7 +33,15 @@ const Gallery = props => (
           <div className="form-group">
             <label htmlFor="select" className="col-lg-2 control-label">Sort By</label>
             <div className="col-lg-10">
-              <select className="form-control" id="select">
+              <select
+                className="form-control"
+                id="select"
+                onChange={(e) => {
+                  const sort = e.target.value;
+                  props.setSort(sort);
+                  props.reloadGallery(props.type, props.viral, sort);
+                }}
+              >
                 <option>viral</option>
                 <option>top</option>
                 <option>time</option>
@@ -67,6 +77,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   setViralDisplay: (viral) => {
     dispatch(Actions.setViralDisplay(viral));
+  },
+  setSort: (sort) => {
+    dispatch(Actions.setSort(sort));
   },
   reloadGallery: (type, viral, sort) => {
     dispatch(Actions.fetchGallery(type, 0, viral, sort));
