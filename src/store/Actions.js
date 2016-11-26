@@ -18,6 +18,8 @@ export const { Types, Creators } = createActions({
     .then((data) => {
       dispatch(Creators.receiveGallery(galleryType, data.data, page));
       dispatch(Creators.setLoading(false));
+    }, () => {
+      dispatch(Creators.setLoading(false));
     });
   },
   setSort: ['sort'],
