@@ -52,7 +52,7 @@ const Gallery = props => (
         </fieldset>
       </form>
     </div>
-    <div className="card-columns">
+    <div className={`card-columns ${props.isLoading ? 'loading' : ''}`}>
       {props.pictures.map((picture, i) =>
         <Picture
           title={picture.title}
@@ -72,6 +72,7 @@ const mapStateToProps = state => ({
   viral: state.gallery.viral,
   type: state.gallery.type,
   sort: state.gallery.sort,
+  isLoading: state.gallery.isLoading,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -82,6 +83,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(Actions.setSort(sort));
   },
   reloadGallery: (type, viral, sort) => {
+    dispatch(Actions.setLoading(true));
     dispatch(Actions.fetchGallery(type, 0, viral, sort));
   },
 });
@@ -92,6 +94,7 @@ Gallery.propTypes = {
   viral: PropTypes.bool,
   sort: PropTypes.oneOf(['viral', 'time', 'top', 'rising']),
   type: PropTypes.oneOf(['HOT', 'TOP', 'USER']),
+  isLoading: PropTypes.bool,
   pictures: PropTypes.arrayOf(React.PropTypes.shape({
     title: PropTypes.string,
     link: PropTypes.string,
