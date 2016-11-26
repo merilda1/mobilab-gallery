@@ -11,7 +11,7 @@ const Gallery = props => (
         <fieldset>
           <legend>Options</legend>
           <div className="form-group">
-            <label htmlhtmlFor="viral-video" className="col-lg-2 control-label">Display Viral Video</label>
+            <label htmlFor="viral-video" className="col-lg-2 control-label">Display Viral Video</label>
             <div className="col-lg-10">
               <div className="checkbox">
                 <input
@@ -22,7 +22,7 @@ const Gallery = props => (
                   onChange={() => {
                     const reverseViral = !props.viral;
                     props.setViralDisplay(reverseViral);
-                    props.reloadGallery(props.type, reverseViral);
+                    props.reloadGallery(props.type, reverseViral, props.sort);
                   }}
                 />
               </div>
@@ -61,14 +61,15 @@ const mapStateToProps = state => ({
   pictures: state.gallery.pictures,
   viral: state.gallery.viral,
   type: state.gallery.type,
+  sort: state.gallery.sort,
 });
 
 const mapDispatchToProps = dispatch => ({
   setViralDisplay: (viral) => {
     dispatch(Actions.setViralDisplay(viral));
   },
-  reloadGallery: (type, viral) => {
-    dispatch(Actions.fetchGallery(type, 0, viral));
+  reloadGallery: (type, viral, sort) => {
+    dispatch(Actions.fetchGallery(type, 0, viral, sort));
   },
 });
 
@@ -76,6 +77,7 @@ const mapDispatchToProps = dispatch => ({
 Gallery.propTypes = {
   title: PropTypes.string,
   viral: PropTypes.bool,
+  sort: PropTypes.oneOf(['viral', 'time', 'top', 'rising']),
   type: PropTypes.oneOf(['HOT', 'TOP', 'USER']),
   pictures: PropTypes.arrayOf(React.PropTypes.shape({
     title: PropTypes.string,
