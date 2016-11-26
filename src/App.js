@@ -5,17 +5,19 @@ import Gallery from './components/Gallery';
 import store from './store';
 import Menu from './components/Menu';
 
-const App = () => (
+const App = ({ children }) => (
   <Provider store={store}>
     <div className="App">
       <Menu />
       <div className="container">
-        <Gallery
-          title="Gallery"
-        />
+        {children}
       </div>
     </div>
   </Provider>
 );
+
+App.propsType = {
+  children: React.PropTypes.node,
+};
 
 export default App;
